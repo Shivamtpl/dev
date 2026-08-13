@@ -1,5 +1,7 @@
 package com.badcow.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "contacts")
+public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,11 +18,12 @@ public class User {
 
     private String name;
 
-    @Column(unique = true)
     private String email;
 
-    private String password;
+    private String subject;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @Column(length = 2000)
+    private String message;
+
+    private LocalDateTime createdAt = LocalDateTime.now();
 }
